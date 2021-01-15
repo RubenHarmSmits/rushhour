@@ -16,28 +16,27 @@ quickestWin = 250
 
 def solve(game, amountOfMoves, moveList):
     global quickestWin
-    global boardMemory
     amountOfMoves += 1
     if amountOfMoves < quickestWin:
-        moves = game.find_moves()
-        for i in range(len(moves)):
-            gamee = copy.deepcopy(game)
-            moves = gamee.find_moves()
+        amountOfPossibleMoves = len(game.find_moves())
+        for i in range(amountOfPossibleMoves):
+            gameCopy = copy.deepcopy(game)
+            moves = gameCopy.find_moves()
             move = moves[i]
-            gamee.move(move)
-            gamee.board.create_layout()
+            gameCopy.move(move)
+            gameCopy.board.create_layout()
             conti = True
-            if gamee.board.cars in boardMemory:
-                i = boardMemory.index(gamee.board.cars)
+            if gameCopy.board.cars in boardMemory:
+                i = boardMemory.index(gameCopy.board.cars)
                 if boardMemoryMoves[i] > amountOfMoves:
                     boardMemoryMoves[i] = amountOfMoves
                 else:
                     conti = False
             else:
-                boardMemory.append(gamee.board.cars)
+                boardMemory.append(gameCopy.board.cars)
                 boardMemoryMoves.append(amountOfMoves)
             if conti:
-                if gamee.win():
+                if gameCopy.win():
                     quickestWin = amountOfMoves
                     print("WE WONNN!!!! in " + str(amountOfMoves) + " moves!" )
                     c = moveList[:]
@@ -47,7 +46,7 @@ def solve(game, amountOfMoves, moveList):
                 else:
                     b = moveList[:]
                     b.append(str(move[0].name) +"," + str(move[1]))
-                    solve(gamee, amountOfMoves, b)
+                    solve(gameCopy, amountOfMoves, b)
 
 
 if __name__ == '__main__':
@@ -59,7 +58,7 @@ if __name__ == '__main__':
     try:
         # while True:
         # create new game
-        game = Game('data/Rushhour9x9_4.csv')
+        game = Game('data/Rushhour6x6_1.csv')
 
         # draw first board
         game.board.draw_board()
