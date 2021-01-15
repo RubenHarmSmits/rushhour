@@ -1,0 +1,24 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>270</x><y>190</y><w>200</w><h>200</h></coordinates><panel_attributes>Board
+--
+Cars: [Car]
+Size: integer
+Layout: numpy matrix
+--
+load_cars(self, source_file): [Cars]
+create_layout(self): layout
+draw_board(self)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>190</y><w>170</w><h>200</h></coordinates><panel_attributes>Car
+--
+Name: Char
+Orientation: Char
+Row: Integer
+Col: Integer
+Length: Integer
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>210</y><w>200</w><h>160</h></coordinates><panel_attributes>Game
+--
+board: Board
+--
+find_moves(self): [[Car, direction]]
+move(self, car, direction)
+win(self): boolean</panel_attributes><additional_attributes></additional_attributes></element></diagram>
